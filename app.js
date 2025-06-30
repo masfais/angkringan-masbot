@@ -46,10 +46,19 @@ function tambahPesanan() {
 function renderPesanan() {
   const list = document.getElementById("daftarPesanan");
   const filter = document.getElementById("filter")?.value || "Semua";
+  const keyword = document.getElementById("search")?.value.toLowerCase() || "";
 
   list.innerHTML = "";
+
   pesanan
-    .filter((item) => filter === "Semua" || item.status === filter)
+    .filter((item) => {
+      const cocokFilter = filter === "Semua" || item.status === filter;
+      const cocokKeyword =
+        item.nama.toLowerCase().includes(keyword) ||
+        item.menu.toLowerCase().includes(keyword) ||
+        item.minuman.toLowerCase().includes(keyword);
+      return cocokFilter && cocokKeyword;
+    })
     .forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `
@@ -100,3 +109,24 @@ function resetPesanan() {
 function simpanKeLocalStorage() {
   localStorage.setItem("dataPesanan", JSON.stringify(pesanan));
 }
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+
+  const tombol = document.getElementById("toggleMode");
+  const isDark = document.body.classList.contains("dark");
+
+  tombol.textContent = isDark ? "☀️ Mode Terang" : "🌙 Mode Gelap";
+
+  // Simpan ke localStorage
+  localStorage.setItem("darkMode", isDark ? "true" : "false");
+}
+
+// Cek preferensi dark mode saat awal
+window.addEventListener("DOMContentLoaded", () => {
+  const isDark = localStorage.getItem("darkMode") === "true";
+  if (isDark) {
+    document.body.classList.add("dark");
+    document.getElementById("toggleMode").textContent = "☀️ Mode Terang";
+  }
+});

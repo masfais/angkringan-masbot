@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 8px 4px 0 0;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 15px;
+}
+
+.status-selesai {
+  color: green;
+  font-weight: bold;
+}
+
+.total {
+  font-size: 18px;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+body.dark {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark .container {
+  background: #2c2c2c;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+body.dark input,
+body.dark select {
+  background-color: #3a3a3a;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark button {
+  background-color: #444;
+}
+
+body.dark button:hover {
+  background-color: #666;
+}
+
+body.dark .btn-danger {
+  background-color: #a94442;
+}
+
+body.dark .btn-danger:hover {
+  background-color: #c9302c;
+}
+
+body.dark li {
+  background-color: #333;
+  border: 1px solid #444;
+}

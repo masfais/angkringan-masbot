@@ -2,62 +2,48 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Angkringan Sederhana masBot</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        background: #f0f0f0;
-        padding: 10px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      input {
-        margin-right: 5px;
-        padding: 5px;
-      }
-      button {
-        padding: 5px 10px;
-        margin-top: 10px;
-      }
-      li {
-        margin: 10px 0;
-        background: white;
-        padding: 10px;
-        border-radius: 5px;
-      }
-      .status-selesai {
-        color: green;
-        font-weight: bold;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Angkringan MasBot 🍢</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>📄 Daftar Pesanan Angkringan masBot</h1>
-    <input type="text" id="nama" placeholder="Nama pelanggan" />
-    <input
-      type="text"
-      id="menu"
-      placeholder="Menu (contoh: Nasi kering / sambel teri)"
-    />
-    <input
-      type="text"
-      id="minuman"
-      placeholder="Minuman (contoh: jeruk anget)"
-    />
-    <input type="number" id="harga" placeholder="Harga (contoh: 20000)" />
-    <button onclick="tambahPesanan()">Tambah Pesanan</button>
-    <button onclick="resetPesanan()">Reset Kabeh Pesanan</button>
+    <div class="container">
+      <h1>🍢 Angkringan MasBot</h1>
+      <button id="toggleMode" onclick="toggleDarkMode()">🌙 Mode Gelap</button>
 
-    <select id="filter" onchange="renderPesanan()">
-      <option value="Semua">Tampilkan Semua</option>
-      <option value="Tunggu Sekedap">Tunggu Sekedap</option>
+      <input type="text" id="nama" placeholder="Nama pelanggan" />
+      <input type="text" id="menu" placeholder="Menu (cth: Nasi Kering)" />
+      <input type="text" id="minuman" placeholder="Minuman (cth: Es Teh)" />
+      <input type="number" id="harga" placeholder="Harga (cth: 15000)" />
 
-      <option value="Sampun Siap !">Sampun Siap !</option>
-    </select>
+      <div class="actions">
+        <button onclick="tambahPesanan()">Tambah Pesanan</button>
+        <button onclick="resetPesanan()" class="btn-danger">Reset Semua</button>
+      </div>
 
-    <ul id="daftarPesanan"></ul>
-    <p><strong>Total Harga:</strong> <span id="totalHarga">0</span></p>
+      <select id="filter" onchange="renderPesanan()">
+        <option value="Semua">Tampilkan Semua</option>
+        <option value="Tunggu Sekedap">Tunggu Sekedap</option>
+        <option value="Sampun Siap !">Sampun Siap !</option>
+      </select>
+      <input
+        type="text"
+        id="search"
+        placeholder="Cari menu / pelanggan..."
+        oninput="renderPesanan()"
+      />
+
+      <ul id="daftarPesanan"></ul>
+
+      <p class="total">
+        <strong>Total Harga:</strong> Rp <span id="totalHarga">0</span>
+      </p>
+    </div>
+
+    <script src="app.js"></script>
   </body>
-  <script src="app.js"></script>
 </html>
