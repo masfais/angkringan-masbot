@@ -34,19 +34,20 @@ function tambahPesanan() {
   pesanan.push(data);
   renderPesanan();
   updateTotal();
+  simpanKeLocalStorage();
 
   // Kosongkan input
   document.getElementById("nama").value = "";
   document.getElementById("menu").value = "";
   document.getElementById("minuman").value = "";
   document.getElementById("harga").value = "";
-  simpanKeLocalStorage();
 }
 
 function renderPesanan() {
   const list = document.getElementById("daftarPesanan");
   const filter = document.getElementById("filter")?.value || "Semua";
-  const keyword = document.getElementById("search")?.value.toLowerCase() || "";
+  const keyword =
+    document.getElementById("searchInput")?.value.toLowerCase() || "";
 
   list.innerHTML = "";
 
@@ -110,23 +111,30 @@ function simpanKeLocalStorage() {
   localStorage.setItem("dataPesanan", JSON.stringify(pesanan));
 }
 
+// Dark Mode
 function toggleDarkMode() {
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("dark-mode");
 
-  const tombol = document.getElementById("toggleMode");
-  const isDark = document.body.classList.contains("dark");
-
+  const tombol = document.getElementById("darkToggle");
+  const isDark = document.body.classList.contains("dark-mode");
   tombol.textContent = isDark ? "☀️ Mode Terang" : "🌙 Mode Gelap";
 
-  // Simpan ke localStorage
   localStorage.setItem("darkMode", isDark ? "true" : "false");
 }
 
-// Cek preferensi dark mode saat awal
+document.getElementById("darkToggle").addEventListener("click", toggleDarkMode);
+
+// Cek dark mode saat load
 window.addEventListener("DOMContentLoaded", () => {
   const isDark = localStorage.getItem("darkMode") === "true";
   if (isDark) {
-    document.body.classList.add("dark");
-    document.getElementById("toggleMode").textContent = "☀️ Mode Terang";
+    document.body.classList.add("dark-mode");
+    document.getElementById("darkToggle").textContent = "☀️ Mode Terang";
+  }
+
+  // Re-render saat pencarian diketik
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", renderPesanan);
   }
 });

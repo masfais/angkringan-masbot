@@ -3,45 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Angkringan MasBot 🍢</title>
+    <title>Angkringan MasBot</title>
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="container">
-      <h1>🍢 Angkringan MasBot</h1>
-      <button id="toggleMode" onclick="toggleDarkMode()">🌙 Mode Gelap</button>
+      <header>
+        <h1>
+          ☕ Daftar Pesanan
+          <span class="subtitle">- Angkringan MasBot </span>
+        </h1>
+        <button id="darkToggle">🌙 Mode Gelap</button>
+      </header>
 
-      <input type="text" id="nama" placeholder="Nama pelanggan" />
-      <input type="text" id="menu" placeholder="Menu (cth: Nasi Kering)" />
-      <input type="text" id="minuman" placeholder="Minuman (cth: Es Teh)" />
-      <input type="number" id="harga" placeholder="Harga (cth: 15000)" />
+      <section class="form-section">
+        <input type="text" id="nama" placeholder="👤 Nama pelanggan" />
+        <input type="text" id="menu" placeholder="🍽️ Menu (cth: Sate Usus)" />
+        <input
+          type="text"
+          id="minuman"
+          placeholder="🍵 Minuman (cth: Teh Panas)"
+        />
+        <input type="number" id="harga" placeholder="💰 Harga (cth: 5000)" />
+        <div class="btn-group">
+          <button onclick="tambahPesanan()">➕ Tambah Pesanan</button>
+          <button onclick="resetPesanan()" class="danger">♻️ Reset</button>
+        </div>
+      </section>
 
-      <div class="actions">
-        <button onclick="tambahPesanan()">Tambah Pesanan</button>
-        <button onclick="resetPesanan()" class="btn-danger">Reset Semua</button>
-      </div>
+      <section class="filter-section">
+        <label for="filter">Filter Status:</label>
+        <select id="filter" onchange="renderPesanan()">
+          <option value="Semua">Tampilkan Semua</option>
+          <option value="Tunggu Sekedap">Tunggu Sekedap</option>
+          <option value="Sampun Siap !">Sampun Siap !</option>
+        </select>
+      </section>
 
-      <select id="filter" onchange="renderPesanan()">
-        <option value="Semua">Tampilkan Semua</option>
-        <option value="Tunggu Sekedap">Tunggu Sekedap</option>
-        <option value="Sampun Siap !">Sampun Siap !</option>
-      </select>
-      <input
-        type="text"
-        id="search"
-        placeholder="Cari menu / pelanggan..."
-        oninput="renderPesanan()"
-      />
+      <section class="search-section">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Cari nama/menu/minuman..."
+        />
+      </section>
 
-      <ul id="daftarPesanan"></ul>
-
-      <p class="total">
-        <strong>Total Harga:</strong> Rp <span id="totalHarga">0</span>
-      </p>
+      <section>
+        <ul id="daftarPesanan" class="pesanan-list"></ul>
+        <p class="total">💲 Total Harga: <strong id="totalHarga">0</strong></p>
+      </section>
     </div>
 
     <script src="app.js"></script>
