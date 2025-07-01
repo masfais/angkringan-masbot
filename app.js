@@ -99,7 +99,7 @@ function updateTotal() {
 }
 
 function resetPesanan() {
-  if (confirm("Yakin pengen dihapus kabeh pesanan.e gan ?")) {
+  if (confirm("Yakin pengen dihapus kabeh gan ?")) {
     pesanan.length = 0;
     renderPesanan();
     updateTotal();
